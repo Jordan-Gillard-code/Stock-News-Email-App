@@ -34,13 +34,11 @@ day_before_yesterday = yesterday - datetime.timedelta(days=1)
 yesterday_open_price = float(data["Time Series (Daily)"][str(yesterday)]['1. open'])
 day_before_open_price = float(data["Time Series (Daily)"][str(day_before_yesterday)]['1. open'])
 
-pct_price_change = ((yesterday_open_price - day_before_open_price)/(yesterday_open_price + day_before_open_price)) * 100
+pct_price_change = ((yesterday_open_price - day_before_open_price)/yesterday_open_price) * 100
 # print(f"{round(pct_price_change,2)}%")
 
 # if abs(pct_price_change) > 5:
 #     print("Get News")
-
-
 
 ## STEP 2: Use https://newsapi.org
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
@@ -72,7 +70,7 @@ with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
     else:
         increase_or_decrease = "🔻"
 
-    message = f"""Subject: {STOCK} {increase_or_decrease}{pct_price_change}%
+    message = f"""Subject: {STOCK} {increase_or_decrease}{round(pct_price_change,2)}%
 
 Headline: {news_articles[0]['title']}
 Brief: {news_articles[0]['description']}
