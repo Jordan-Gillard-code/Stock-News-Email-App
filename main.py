@@ -41,6 +41,7 @@ pct_price_change = ((yesterday_open_price - day_before_open_price)/(yesterday_op
 #     print("Get News")
 
 
+
 ## STEP 2: Use https://newsapi.org
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
 params = {
